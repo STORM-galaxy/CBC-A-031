@@ -56,10 +56,11 @@ const Header = ({ sidebarOpen, setSidebarOpen }: HeaderProps) => {
           </div>
           
           <div className="flex items-center">
-            <Link href="/notifications">
-              <a className="p-2 text-gray-500 hover:text-gray-900">
-                <Bell className="h-6 w-6" />
-              </a>
+            <Link 
+              href="/notifications" 
+              className="p-2 text-gray-500 hover:text-gray-900"
+            >
+              <Bell className="h-6 w-6" />
             </Link>
             <button className="ml-4 flex items-center text-sm font-medium text-gray-700 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
               <Avatar className="h-8 w-8">

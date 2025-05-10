@@ -25,11 +25,13 @@ interface PossibleCondition {
   probability: string;
   description: string;
   whenToSeekCare: string;
+  relatedBodySystem: string;
 }
 
 interface AnalysisResult {
   possibleConditions: PossibleCondition[];
   disclaimer: string;
+  recommendations: string[];
 }
 
 const SymptomForm = () => {
@@ -278,14 +280,35 @@ const SymptomForm = () => {
                   </AlertDescription>
                 </Alert>
                 
+                {/* Recommendations */}
+                {result.recommendations && result.recommendations.length > 0 && (
+                  <div className="mb-6">
+                    <h3 className="text-lg font-medium mb-2">Recommendations</h3>
+                    <ul className="list-disc pl-5 space-y-1">
+                      {result.recommendations.map((recommendation, index) => (
+                        <li key={index} className="text-gray-700">{recommendation}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {/* Possible Conditions */}
                 <div>
                   <h3 className="text-lg font-medium mb-4">Possible Conditions</h3>
                   <div className="space-y-4">
                     {result.possibleConditions.map((condition, index) => (
-                      <Card key={index}>
+                      <Card key={index} className={`border-l-4 ${
+                        condition.probability === "High" ? "border-l-red-500" : 
+                        condition.probability === "Medium" ? "border-l-amber-500" : "border-l-blue-500"
+                      }`}>
                         <CardHeader className="pb-2">
-                          <div className="flex justify-between items-center">
-                            <CardTitle className="text-base">{condition.name}</CardTitle>
+                          <div className="flex justify-between items-center flex-wrap gap-2">
+                            <div>
+                              <CardTitle className="text-base">{condition.name}</CardTitle>
+                              <p className="text-xs text-gray-500">
+                                Related to: {condition.relatedBodySystem || "Multiple systems"}
+                              </p>
+                            </div>
                             <Badge color={
                               condition.probability === "High" ? "red" : 
                               condition.probability === "Medium" ? "yellow" : "blue"
@@ -295,10 +318,24 @@ const SymptomForm = () => {
                           </div>
                         </CardHeader>
                         <CardContent className="pt-0">
-                          <p className="text-sm mb-2">{condition.description}</p>
-                          <div className="mt-2">
-                            <h4 className="text-sm font-medium">When to seek care:</h4>
-                            <p className="text-sm text-gray-600">{condition.whenToSeekCare}</p>
+                          <div className="prose prose-sm max-w-none">
+                            <p className="text-sm mb-3">{condition.description}</p>
+                            <div className="bg-red-50 border border-red-100 rounded-md p-3 mt-2">
+                              <h4 className="text-sm font-medium text-red-800">When to seek care:</h4>
+                              <p className="text-sm text-red-700">{condition.whenToSeekCare}</p>
+                            </div>
+                          </div>
+                          <div className="mt-4 flex justify-end">
+                            <Button variant="outline" size="sm" asChild>
+                              <a 
+                                href={`/disease-detailed/${encodeURIComponent(condition.name)}`}
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                className="text-xs"
+                              >
+                                Learn more about {condition.name}
+                              </a>
+                            </Button>
                           </div>
                         </CardContent>
                       </Card>

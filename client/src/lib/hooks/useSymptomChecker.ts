@@ -13,11 +13,13 @@ interface PossibleCondition {
   probability: string;
   description: string;
   whenToSeekCare: string;
+  relatedBodySystem: string;
 }
 
 interface AnalysisResult {
   possibleConditions: PossibleCondition[];
   disclaimer: string;
+  recommendations: string[];
 }
 
 export const useSymptomChecker = () => {

@@ -292,10 +292,24 @@ export class MemStorage implements IStorage {
         category: "professional"
       },
       {
+        title: "Harvard Medical School - Countway Library of Medicine",
+        description: "Harvard's comprehensive medical database with extensive research archives, clinical resources, and evidence-based guidelines for healthcare professionals.",
+        url: "https://countway.harvard.edu/",
+        type: "database",
+        category: "professional"
+      },
+      {
         title: "MedlinePlus",
         description: "The National Institutes of Health's website for patients, providing reliable, up-to-date health information.",
         url: "https://medlineplus.gov/",
         type: "website",
+        category: "patient"
+      },
+      {
+        title: "Harvard Medical School - Harvard Health Publishing",
+        description: "Authoritative, trustworthy, and accessible health information from Harvard Medical School experts.",
+        url: "https://www.health.harvard.edu/",
+        type: "education",
         category: "patient"
       },
       {

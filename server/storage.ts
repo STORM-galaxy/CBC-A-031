@@ -299,6 +299,13 @@ export class MemStorage implements IStorage {
         category: "professional"
       },
       {
+        title: "AIIMS Delhi - Knowledge Repository",
+        description: "Digital repository of research papers, journals, and medical education resources from All India Institute of Medical Sciences, New Delhi.",
+        url: "https://library.aiims.edu/",
+        type: "database",
+        category: "professional"
+      },
+      {
         title: "MedlinePlus",
         description: "The National Institutes of Health's website for patients, providing reliable, up-to-date health information.",
         url: "https://medlineplus.gov/",
@@ -309,6 +316,13 @@ export class MemStorage implements IStorage {
         title: "Harvard Medical School - Harvard Health Publishing",
         description: "Authoritative, trustworthy, and accessible health information from Harvard Medical School experts.",
         url: "https://www.health.harvard.edu/",
+        type: "education",
+        category: "patient"
+      },
+      {
+        title: "AIIMS Delhi - Patient Education Portal",
+        description: "Educational resources, health awareness materials, and patient guidelines from All India Institute of Medical Sciences, Delhi.",
+        url: "https://www.aiims.edu/en/patient-info.html",
         type: "education",
         category: "patient"
       },

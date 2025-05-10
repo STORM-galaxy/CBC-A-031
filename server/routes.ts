@@ -2,7 +2,7 @@ import type { Express, Request, Response } from "express";
 import { createServer, type Server } from "http";
 import { z } from "zod";
 import { storage } from "./storage";
-import openai from "./openai";
+import openai, { getDiseaseInformation, getMedicalNews, getIndianHealthcareProviders } from "./openai";
 
 // For WebSocket later if needed
 // import { WebSocketServer } from 'ws';

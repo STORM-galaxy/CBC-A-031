@@ -113,7 +113,9 @@ export async function analyzeSymptoms(symptoms: string[], userInfo?: { age?: num
       temperature: 0.2,
     });
 
-    const result = JSON.parse(response.choices[0].message.content);
+    const content = response.choices[0].message.content;
+    if (!content) throw new Error("No content returned from API");
+    const result = JSON.parse(content);
 
     return {
       possibleConditions: result.possibleConditions || [],
@@ -176,7 +178,9 @@ export async function getDiseaseInformation(diseaseName: string): Promise<{
       temperature: 0.2,
     });
 
-    return JSON.parse(response.choices[0].message.content);
+    const content = response.choices[0].message.content;
+    if (!content) throw new Error("No content returned from API");
+    return JSON.parse(content);
   } catch (error: any) {
     console.error("Error fetching disease information:", error);
     return {

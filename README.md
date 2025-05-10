@@ -1,0 +1,1 @@
+Develop an app or website that provides a depth in scientific information about all the diseases and disorders related to a human body, include symptoms and the prevention. Also include a medical chatbot

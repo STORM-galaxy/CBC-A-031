@@ -66,18 +66,18 @@ const Sidebar = ({ isOpen, setIsOpen }: SidebarProps) => {
           <div className="pb-2">
             <p className="px-3 text-xs font-semibold text-gray-500 uppercase tracking-wide">Main</p>
             {mainNavItems.map((item) => (
-              <Link key={item.path} href={item.path}>
-                <a
-                  className={cn(
-                    "mt-1 group flex items-center px-3 py-2 text-sm font-medium rounded-md",
-                    location === item.path 
-                      ? "bg-primary-50 text-primary" 
-                      : "text-gray-700 hover:bg-gray-100"
-                  )}
-                >
-                  {item.icon}
-                  {item.name}
-                </a>
+              <Link 
+                key={item.path} 
+                href={item.path}
+                className={cn(
+                  "mt-1 group flex items-center px-3 py-2 text-sm font-medium rounded-md",
+                  location === item.path 
+                    ? "bg-primary-50 text-primary" 
+                    : "text-gray-700 hover:bg-gray-100"
+                )}
+              >
+                {item.icon}
+                {item.name}
               </Link>
             ))}
           </div>
@@ -85,41 +85,42 @@ const Sidebar = ({ isOpen, setIsOpen }: SidebarProps) => {
           <div className="pb-2 mt-6">
             <p className="px-3 text-xs font-semibold text-gray-500 uppercase tracking-wide">Body Systems</p>
             {bodySystems.map((system) => (
-              <Link key={system.path} href={system.path}>
-                <a
-                  className={cn(
-                    "mt-1 group flex items-center px-3 py-2 text-sm font-medium rounded-md text-gray-700 hover:bg-gray-100",
-                    location === system.path && "bg-primary-50 text-primary"
-                  )}
-                >
-                  {system.icon}
-                  {system.name}
-                </a>
+              <Link 
+                key={system.path} 
+                href={system.path}
+                className={cn(
+                  "mt-1 group flex items-center px-3 py-2 text-sm font-medium rounded-md text-gray-700 hover:bg-gray-100",
+                  location === system.path && "bg-primary-50 text-primary"
+                )}
+              >
+                {system.icon}
+                {system.name}
               </Link>
             ))}
-            <Link href="/disease-database">
-              <a className="mt-1 group flex items-center px-3 py-2 text-sm font-medium text-gray-700 rounded-md bg-white hover:bg-gray-100">
-                <MoreHorizontal className="mr-3 h-5 w-5 text-gray-500" />
-                More Systems
-              </a>
+            <Link 
+              href="/disease-database"
+              className="mt-1 group flex items-center px-3 py-2 text-sm font-medium text-gray-700 rounded-md bg-white hover:bg-gray-100"
+            >
+              <MoreHorizontal className="mr-3 h-5 w-5 text-gray-500" />
+              More Systems
             </Link>
           </div>
           
           <div className="pb-2 mt-6">
             <p className="px-3 text-xs font-semibold text-gray-500 uppercase tracking-wide">Tools</p>
             {toolsNavItems.map((item) => (
-              <Link key={item.path} href={item.path}>
-                <a
-                  className={cn(
-                    "mt-1 group flex items-center px-3 py-2 text-sm font-medium rounded-md",
-                    location === item.path 
-                      ? "bg-primary-50 text-primary" 
-                      : "text-gray-700 hover:bg-gray-100"
-                  )}
-                >
-                  {item.icon}
-                  {item.name}
-                </a>
+              <Link 
+                key={item.path} 
+                href={item.path}
+                className={cn(
+                  "mt-1 group flex items-center px-3 py-2 text-sm font-medium rounded-md",
+                  location === item.path 
+                    ? "bg-primary-50 text-primary" 
+                    : "text-gray-700 hover:bg-gray-100"
+                )}
+              >
+                {item.icon}
+                {item.name}
               </Link>
             ))}
           </div>

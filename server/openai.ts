@@ -283,7 +283,9 @@ export async function getIndianHealthcareProviders(query: string, location?: str
       temperature: 0.2,
     });
 
-    return JSON.parse(response.choices[0].message.content);
+    const content = response.choices[0].message.content;
+    if (!content) throw new Error("No content returned from API");
+    return JSON.parse(content);
   } catch (error: any) {
     console.error("Error fetching healthcare providers:", error);
     return {
@@ -347,7 +349,9 @@ export async function getMedicalNews(category?: string): Promise<Array<{
       temperature: 0.3,
     });
 
-    return JSON.parse(response.choices[0].message.content);
+    const content = response.choices[0].message.content;
+    if (!content) throw new Error("No content returned from API");
+    return JSON.parse(content);
   } catch (error: any) {
     console.error("Error fetching medical news:", error);
     return [];
@@ -356,5 +360,8 @@ export async function getMedicalNews(category?: string): Promise<Array<{
 
 export default {
   getMedicalResponse,
-  analyzeSymptoms
+  analyzeSymptoms,
+  getDiseaseInformation,
+  getIndianHealthcareProviders,
+  getMedicalNews
 };

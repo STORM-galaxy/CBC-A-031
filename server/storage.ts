@@ -306,6 +306,13 @@ export class MemStorage implements IStorage {
         category: "professional"
       },
       {
+        title: "KIMS Medical College - Digital Library & Research Database",
+        description: "Comprehensive collection of medical journals, research papers, and educational resources from Kalinga Institute of Medical Sciences.",
+        url: "https://kims.kiit.ac.in/central-library/",
+        type: "database",
+        category: "professional"
+      },
+      {
         title: "MedlinePlus",
         description: "The National Institutes of Health's website for patients, providing reliable, up-to-date health information.",
         url: "https://medlineplus.gov/",
@@ -323,6 +330,13 @@ export class MemStorage implements IStorage {
         title: "AIIMS Delhi - Patient Education Portal",
         description: "Educational resources, health awareness materials, and patient guidelines from All India Institute of Medical Sciences, Delhi.",
         url: "https://www.aiims.edu/en/patient-info.html",
+        type: "education",
+        category: "patient"
+      },
+      {
+        title: "KIMS Medical College - Patient Resources Center",
+        description: "Comprehensive health education materials, disease awareness resources, and patient care guidelines from Kalinga Institute of Medical Sciences.",
+        url: "https://kims.kiit.ac.in/facilities/patient-services/",
         type: "education",
         category: "patient"
       },

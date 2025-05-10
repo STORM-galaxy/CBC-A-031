@@ -2,7 +2,7 @@ import type { Express, Request, Response } from "express";
 import { createServer, type Server } from "http";
 import { z } from "zod";
 import { storage } from "./storage";
-import openai, { getDiseaseInformation, getMedicalNews, getIndianHealthcareProviders } from "./openai";
+import openai from "./openai";
 
 // For WebSocket later if needed
 // import { WebSocketServer } from 'ws';
@@ -210,6 +210,75 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.json(resources);
     } catch (error) {
       res.status(500).json({ message: "Failed to fetch resources", error: String(error) });
+    }
+  });
+  
+  // Get all resources for 'all' type
+  app.get(`${apiPrefix}/resources/all`, async (req: Request, res: Response) => {
+    try {
+      const category = req.query.category as string;
+      
+      const patientResources = await storage.getResourcesByType('patient', category);
+      const professionalResources = await storage.getResourcesByType('professional', category);
+      const organizationResources = await storage.getResourcesByType('organization', category);
+      const hospitalResources = await storage.getResourcesByType('hospital', category);
+      
+      const allResources = [
+        ...patientResources,
+        ...professionalResources,
+        ...organizationResources,
+        ...hospitalResources
+      ];
+      
+      res.json(allResources);
+    } catch (error) {
+      res.status(500).json({ message: "Failed to fetch all resources", error: String(error) });
+    }
+  });
+
+  // ===== Detailed Disease Information API =====
+  
+  // Get detailed information about a specific disease using AI
+  app.get(`${apiPrefix}/disease-detailed/:name`, async (req: Request, res: Response) => {
+    try {
+      const { name } = req.params;
+      if (!name) {
+        return res.status(400).json({ message: "Disease name is required" });
+      }
+      
+      const diseaseInfo = await openai.getDiseaseInformation(name);
+      res.json(diseaseInfo);
+    } catch (error) {
+      res.status(500).json({ message: "Failed to fetch detailed disease information", error: String(error) });
+    }
+  });
+
+  // ===== Indian Healthcare Providers API =====
+  
+  // Get information about healthcare providers in India
+  app.get(`${apiPrefix}/indian-healthcare`, async (req: Request, res: Response) => {
+    try {
+      const query = req.query.q as string || "top";
+      const location = req.query.location as string;
+      const specialty = req.query.specialty as string;
+      
+      const providers = await openai.getIndianHealthcareProviders(query, location, specialty);
+      res.json(providers);
+    } catch (error) {
+      res.status(500).json({ message: "Failed to fetch healthcare providers", error: String(error) });
+    }
+  });
+
+  // ===== Live Medical News API =====
+  
+  // Get real-time medical news
+  app.get(`${apiPrefix}/live-news`, async (req: Request, res: Response) => {
+    try {
+      const category = req.query.category as string;
+      const newsItems = await openai.getMedicalNews(category);
+      res.json(newsItems);
+    } catch (error) {
+      res.status(500).json({ message: "Failed to fetch live medical news", error: String(error) });
     }
   });
 

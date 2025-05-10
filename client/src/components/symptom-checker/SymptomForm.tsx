@@ -359,7 +359,14 @@ const SymptomForm = () => {
               <CardContent className="pt-6">
                 <div className="text-center py-8">
                   <p>No analysis results yet. Please complete the symptom checker form.</p>
-                  <Button className="mt-4" variant="outline" onClick={() => document.querySelector('[data-value="symptoms"]')?.click()}>
+                  <Button 
+                    className="mt-4" 
+                    variant="outline" 
+                    onClick={() => {
+                      const element = document.querySelector('[data-value="symptoms"]') as HTMLElement;
+                      if (element) element.click();
+                    }}
+                  >
                     Go to Symptom Checker
                   </Button>
                 </div>

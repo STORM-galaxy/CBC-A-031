@@ -78,17 +78,22 @@ const FindDoctors = () => {
   const [location, setLocation] = useState("");
   const [activeTab, setActiveTab] = useState("doctors");
 
-  // Fetch doctors
-  const { data: doctors, isLoading: isLoadingDoctors } = useQuery<Doctor[]>({
-    queryKey: ['/api/doctors'],
+  // Fetch Indian healthcare providers (both doctors and hospitals)
+  const { data: healthcareProviders, isLoading: isLoadingHealthcare } = useQuery<{
+    doctors: Doctor[],
+    hospitals: Hospital[]
+  }>({
+    queryKey: ['/api/indian-healthcare'],
     staleTime: 300000, // 5 minutes
   });
-
-  // Fetch hospitals
-  const { data: hospitals, isLoading: isLoadingHospitals } = useQuery<Hospital[]>({
-    queryKey: ['/api/hospitals'],
-    staleTime: 300000, // 5 minutes
-  });
+  
+  // Extract doctors and hospitals from the API response
+  const doctors = healthcareProviders?.doctors;
+  const hospitals = healthcareProviders?.hospitals;
+  
+  // Loading states
+  const isLoadingDoctors = isLoadingHealthcare;
+  const isLoadingHospitals = isLoadingHealthcare;
 
   // Fallback data when API data is not available
   const fallbackDoctors: Doctor[] = [

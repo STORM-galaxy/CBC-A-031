@@ -11,6 +11,7 @@ import ChatButton from "@/components/layout/ChatButton";
 import Home from "@/pages/home";
 import DiseaseDatabase from "@/pages/disease-database";
 import DiseaseDetails from "@/pages/disease-details";
+import DiseaseDetailed from "@/pages/disease-detailed";
 import SymptomChecker from "@/pages/symptom-checker";
 import AiChat from "@/pages/ai-chat";
 import MedicalNews from "@/pages/medical-news";
@@ -38,6 +39,7 @@ function AppContent() {
             <Route path="/" component={Home} />
             <Route path="/disease-database" component={DiseaseDatabase} />
             <Route path="/disease/:id" component={DiseaseDetails} />
+            <Route path="/disease-detailed/:name" component={DiseaseDetailed} />
             <Route path="/symptom-checker" component={SymptomChecker} />
             <Route path="/ai-chat" component={AiChat} />
             <Route path="/medical-news" component={MedicalNews} />

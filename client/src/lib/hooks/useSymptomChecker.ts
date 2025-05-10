@@ -50,9 +50,9 @@ export const useSymptomChecker = () => {
       setResult(data);
       
       // Switch to results tab if it exists
-      const resultsTab = document.querySelector('[data-value="results"]');
+      const resultsTab = document.querySelector('[data-value="results"]') as HTMLElement;
       if (resultsTab) {
-        (resultsTab as HTMLElement).click();
+        resultsTab.click();
       }
     } catch (error) {
       console.error("Error analyzing symptoms:", error);
